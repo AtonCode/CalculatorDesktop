@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 
 public class CalculadoraIT {
 
-
+    private Calculator calculator;
     @Before
-    public void setUpClass() {}
+    public void setUpClass() {this.calculator = new Calculator();}
 
     /**
-     * Test of add method, of class Calculadora.
+     * Test of add method, of class Calculator.
      */
     @Test
     public void testAdd() {
@@ -18,7 +18,7 @@ public class CalculadoraIT {
         float a = 3;
         float b = 5;
         float expResult = a+b;
-        float result = Calculator.add(a,b);
+        float result = this.calculator.add(a,b);
         assertEquals(expResult,result,0.0);
     }
 
@@ -28,7 +28,7 @@ public class CalculadoraIT {
         float a = 3;
         float b = 5;
         float expResult = b-a;
-        float result = Calculator.substract(b,a);
+        float result = this.calculator.substract(b,a);
         assertEquals(expResult,result,0.0);
     }
 
@@ -38,7 +38,7 @@ public class CalculadoraIT {
         float a = 3;
         float b = 5;
         float expResult = a*b;
-        float result = Calculator.multiply(b,a);
+        float result = this.calculator.multiply(b,a);
         assertEquals(expResult,result,0.0);
     }
 
@@ -48,7 +48,7 @@ public class CalculadoraIT {
         float a = 3;
         float b = 5;
         float expResult = a/b;
-        float result = Calculator.div(a,b);
+        float result = this.calculator.div(a,b);
         assertEquals(expResult,result,0.0);
     }
 

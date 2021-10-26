@@ -14,4 +14,5 @@ module com.aslbank.calculadora {
     exports com.aslbank.calculadora;
     exports com.aslbank.calculadora.view.fxmlController;
     opens com.aslbank.calculadora.view.fxmlController to javafx.fxml;
+    exports com.aslbank.calculadora.model;
 }
