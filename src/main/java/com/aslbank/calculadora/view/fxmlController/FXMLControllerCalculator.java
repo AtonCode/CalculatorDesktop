@@ -157,6 +157,15 @@ public class FXMLControllerCalculator implements Initializable {
         }else if (event.getSource() == tenPow) {
             display.setText("");
         }
+        else if (event.getSource() == sqrt) {
+            display.setText("");
+        }
+        else if (event.getSource() == nFact) {
+            display.setText("");
+        }
+        else if (event.getSource() == log) {
+            display.setText("");
+        }
     }
 
 
