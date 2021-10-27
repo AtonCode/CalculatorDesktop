@@ -93,6 +93,8 @@ public class FXMLControllerCalculator implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
+
+        // Matrix of Number Buttons
         if (event.getSource() == one) {
             display.setText(display.getText() + "1");
         } else if (event.getSource() == two) {
@@ -116,6 +118,8 @@ public class FXMLControllerCalculator implements Initializable {
         } else if (event.getSource() == clear) {
             display.setText("");
         }
+
+        //Operations Buttons
         else if (event.getSource() == plus) {
             data = Float.parseFloat(display.getText());
             operation = 1; //Addition
@@ -132,7 +136,38 @@ public class FXMLControllerCalculator implements Initializable {
             data = Float.parseFloat(display.getText());
             operation = 4; //Division
             display.setText("");
+        } else if (event.getSource() == tenPow) {
+            data = Float.parseFloat(display.getText());
+            operation = 5; //Pow10
+            display.setText("");
+        }else if (event.getSource() == sqrt) {
+
+
+            operation = 6; //Sqtr
+
+        }else if (event.getSource() == sqrt) {
+            data = Float.parseFloat(display.getText());
+            operation = 7; //nFact
+            display.setText("");
+        }else if (event.getSource() == sqrt) {
+            data = Float.parseFloat(display.getText());
+            operation = 8; //log10
+            display.setText("");
+        }else if (event.getSource() == coma) {
+            operation = 9; //coma
+            display.setText(".");
+        }else if (event.getSource() == signo) {
+            operation = 10;// signo
+            display.setText("-");
+        }else if (event.getSource() == back) {
+            operation = 11;// back
+            display.setText("");
+        }else if (event.getSource() == mod) {
+            operation = 12;// mod
+            display.setText("");
         }
+
+        // Make the operations when the button equals is press
         else if (event.getSource() == equals) {
             float secondOperand = Float.parseFloat(display.getText());
             switch (operation) {
@@ -149,23 +184,29 @@ public class FXMLControllerCalculator implements Initializable {
                     ans = 0f;
                     ans = Calculator.div(data, secondOperand);
                     display.setText(String.valueOf(ans));break;
+                case 5: //tenPow
+                    data = Float.parseFloat(display.getText());
+                    ans = Calculator.pow10(data);
+                    display.setText(String.valueOf(ans));
+                    break;
+                case 6: //sqtr
+                    data = Float.parseFloat(display.getText());
+                    ans = (float) Calculator.sqrt(data);
+                    display.setText(String.valueOf(ans));
+                    break;
+                case 7: //nFact
+                    data = Float.parseFloat(display.getText());
+                    ans = (float) Calculator.Nfactorial(data);
+                    display.setText(String.valueOf(ans));
+                    break;
+                case 8: //log10
+                    data = Float.parseFloat(display.getText());
+                    ans = (float) Calculator.log10(data);
+                    display.setText(String.valueOf(ans));
+                    break;
             }
-        }else if (event.getSource() == coma) {
-            display.setText(".");
-        } else if (event.getSource() == signo) {
-            display.setText("-");
-        }else if (event.getSource() == tenPow) {
-            display.setText("");
         }
-        else if (event.getSource() == sqrt) {
-            display.setText("");
-        }
-        else if (event.getSource() == nFact) {
-            display.setText("");
-        }
-        else if (event.getSource() == log) {
-            display.setText("");
-        }
+
     }
 
 
