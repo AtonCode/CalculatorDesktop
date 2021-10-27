@@ -229,7 +229,7 @@ public class FXMLControllerCalculator implements Initializable {
 
                     this.calculator.setA(secondOperand);
                     ans= this.calculator.sqrt();
-                    display.setText("sqrt ("+secondOperand+") = "+String.valueOf(ans));
+                    display.setText(String.valueOf(ans));
 
                     break;
                 case 7: //nFact
