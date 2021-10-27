@@ -14,6 +14,7 @@ import com.aslbank.calculadora.model.Calculator;
 public class FXMLControllerCalculator implements Initializable {
     private float data;
     private int operation = -1;
+    private Calculator calculator = new Calculator();
 
     @FXML
     private Button one;
@@ -117,93 +118,136 @@ public class FXMLControllerCalculator implements Initializable {
             display.setText(display.getText() + "0");
         } else if (event.getSource() == clear) {
             display.setText("");
+            this.calculator.setB(0);
+            this.calculator.setA(0);
+        }else if (event.getSource() == coma) {
+            display.setText(display.getText() + ".");
+
+        }else if (event.getSource() == signo) {
+            display.setText("-" + display.getText());
+        }else if (event.getSource() == back) {
+            display.setText(display.getText()+" ");
         }
 
         //Operations Buttons
         else if (event.getSource() == plus) {
+
             data = Float.parseFloat(display.getText());
             operation = 1; //Addition
             display.setText("");
+
         } else if (event.getSource() == minus) {
+
             data = Float.parseFloat(display.getText());
             operation = 2; //Substraction
             display.setText("");
+
         } else if (event.getSource() == mult) {
+
             data = Float.parseFloat(display.getText());
             operation = 3; //Mul
             display.setText("");
+
         } else if (event.getSource() == div) {
+
             data = Float.parseFloat(display.getText());
             operation = 4; //Division
             display.setText("");
+
         } else if (event.getSource() == tenPow) {
-            data = Float.parseFloat(display.getText());
+
             operation = 5; //Pow10
-            display.setText("");
-        }else if (event.getSource() == sqrt) {
-
-
-            operation = 6; //Sqtr
-
-        }else if (event.getSource() == sqrt) {
             data = Float.parseFloat(display.getText());
+            this.calculator.setA(data);
+            display.setText(String.valueOf(this.calculator.x10()));
+
+
+        }else if (event.getSource() == sqrt) {
+
+            operation = 6;
+            data = Float.parseFloat(display.getText());
+            this.calculator.setA(data);
+            display.setText(String.valueOf(this.calculator.sqrt()));
+
+
+
+        }else if (event.getSource() == nFact) {
+
             operation = 7; //nFact
-            display.setText("");
-        }else if (event.getSource() == sqrt) {
             data = Float.parseFloat(display.getText());
+            this.calculator.setA(data);
+            display.setText(String.valueOf(this.calculator.Nfactorial()));
+
+        }else if (event.getSource() == log) {
+
             operation = 8; //log10
-            display.setText("");
-        }else if (event.getSource() == coma) {
-            operation = 9; //coma
-            display.setText(".");
-        }else if (event.getSource() == signo) {
-            operation = 10;// signo
-            display.setText("-");
-        }else if (event.getSource() == back) {
-            operation = 11;// back
-            display.setText("");
+            data = Float.parseFloat(display.getText());
+            this.calculator.setA(data);
+            display.setText(String.valueOf(this.calculator.log10()));
+
         }else if (event.getSource() == mod) {
-            operation = 12;// mod
+
+            data = Float.parseFloat(display.getText());
+            operation = 9; //Modulo
             display.setText("");
+
         }
 
-        // Make the operations when the button equals is press
+        // Make the operations whit second operand
         else if (event.getSource() == equals) {
             float secondOperand = Float.parseFloat(display.getText());
             switch (operation) {
                 case 1: //Addition
-                    float ans = Calculator.add(data, secondOperand);
+                    this.calculator.setA(data);
+                    this.calculator.setB(secondOperand);
+                    float ans = this.calculator.add();
                     display.setText(String.valueOf(ans));break;
                 case 2: //Subtraction
-                    ans = Calculator.substract(data, secondOperand);
+                    this.calculator.setA(data);
+                    this.calculator.setB(secondOperand);
+                    ans = this.calculator.substract();
                     display.setText(String.valueOf(ans));break;
                 case 3: //Mul
-                    ans = Calculator.multiply(data, secondOperand);
+                    this.calculator.setA(data);
+                    this.calculator.setB(secondOperand);
+                    ans = this.calculator.multiply();
                     display.setText(String.valueOf(ans));break;
                 case 4: //Div
                     ans = 0f;
-                    ans = Calculator.div(data, secondOperand);
+                    this.calculator.setA(data);
+                    this.calculator.setB(secondOperand);
+                    ans = this.calculator.div();
                     display.setText(String.valueOf(ans));break;
+
                 case 5: //tenPow
-                    data = Float.parseFloat(display.getText());
-                    ans = Calculator.pow10(data);
+
+                    this.calculator.setA(secondOperand);
+                    ans = this.calculator.x10();
                     display.setText(String.valueOf(ans));
                     break;
                 case 6: //sqtr
-                    data = Float.parseFloat(display.getText());
-                    ans = (float) Calculator.sqrt(data);
-                    display.setText(String.valueOf(ans));
+
+                    this.calculator.setA(secondOperand);
+                    ans= this.calculator.sqrt();
+                    display.setText("sqrt ("+secondOperand+") = "+String.valueOf(ans));
+
                     break;
                 case 7: //nFact
-                    data = Float.parseFloat(display.getText());
-                    ans = (float) Calculator.Nfactorial(data);
+                    this.calculator.setA(secondOperand);
+                    ans = this.calculator.Nfactorial();
                     display.setText(String.valueOf(ans));
                     break;
                 case 8: //log10
-                    data = Float.parseFloat(display.getText());
-                    ans = (float) Calculator.log10(data);
+                    this.calculator.setA(secondOperand);
+                    ans = (float) this.calculator.log10();
                     display.setText(String.valueOf(ans));
                     break;
+
+                case 9: //mod
+                    this.calculator.setA(data);
+                    this.calculator.setB(secondOperand);
+                    ans = this.calculator.mod();
+                    display.setText(String.valueOf(ans));break;
             }
         }
 

@@ -2,31 +2,51 @@ package com.aslbank.calculadora.model;
 
 public class Calculator {
 
+    private float a, b;
+
     public Calculator() {
+        this.a=0;
+        this.b=0;
     }
 
-    public static float add(float a, float b) {return a+b;}
+    public float getA() {
+        return a;
+    }
 
-    public static float substract(float a, float b)
+    public void setA(float a) {
+        this.a = a;
+    }
+
+    public float getB() {
+        return b;
+    }
+
+    public void setB(float b) {
+        this.b = b;
+    }
+
+    public float add() {return this.a+this.b;}
+
+    public float substract()
     {
-        return a-b;
+        return this.a-this.b;
     }
 
-    public static float multiply(float a, float b)
+    public float multiply()
     {
-        return a*b;
+        return this.a*this.b;
     }
 
-    public static float div(float a, float b) {return a/b;}
+    public float div() {return this.a/this.b;}
 
-    public static float pow10(float a) {return (float) Math.pow(a,10);}
+    public float x10() {return this.a*10;}
 
-    public static double sqrt(double x) {return Math.sqrt(x);}
+    public float sqrt() {return (float) Math.sqrt(this.a);}
 
-    public static double Nfactorial(double x) {
+    public float Nfactorial() {
 
         long factorial = 1;
-        for(double i=1; i<=x; i++){
+        for(float i=1; i<=this.a; i++){
 
             factorial *= i;
 
@@ -34,10 +54,12 @@ public class Calculator {
         return factorial;
     }
 
-    public static double log10(double x) {
-
-        return Math.log10(x);
+    public float log10() {
+        return (float) Math.log10(this.a);
     }
 
+    public float mod(){
+        return this.a%this.b;
+    }
 
 }
