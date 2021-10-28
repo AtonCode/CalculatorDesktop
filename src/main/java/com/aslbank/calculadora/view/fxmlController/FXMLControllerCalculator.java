@@ -120,6 +120,7 @@ public class FXMLControllerCalculator implements Initializable {
             display.setText("");
             this.calculator.setB(0);
             this.calculator.setA(0);
+            this.calculator.setMessageError("");
         }else if (event.getSource() == coma) {
             display.setText(display.getText() + ".");
 
@@ -217,7 +218,12 @@ public class FXMLControllerCalculator implements Initializable {
                     this.calculator.setA(data);
                     this.calculator.setB(secondOperand);
                     ans = this.calculator.div();
-                    display.setText(String.valueOf(ans));break;
+                    if(this.calculator.getMessageError() ==""){
+                        display.setText(String.valueOf(ans));
+                    }else{
+                        display.setText(this.calculator.getMessageError());
+                    }
+                    break;
 
                 case 5: //tenPow
 

@@ -3,10 +3,19 @@ package com.aslbank.calculadora.model;
 public class Calculator {
 
     private float a, b;
+    private String messageError;
 
     public Calculator() {
         this.a=0;
         this.b=0;
+    }
+
+    public String getMessageError() {
+        return messageError;
+    }
+
+    public void setMessageError(String messageError) {
+        this.messageError = messageError;
     }
 
     public float getA() {
@@ -37,11 +46,29 @@ public class Calculator {
         return this.a*this.b;
     }
 
-    public float div() {return this.a/this.b;}
+    public float div() {
+        float result = 0;
+        if(this.b != 0){
+            result = this.a/this.b;
+        }else{
+
+            this.messageError = "No se Puede Dividir por Cero";
+        }
+        return result;
+    }
 
     public float x10() {return this.a*10;}
 
-    public float sqrt() {return (float) Math.sqrt(this.a);}
+    public float sqrt() {
+        float result = 0;
+        if(this.a != -1){
+            result = (float) Math.sqrt(this.a);
+        }else{
+            this.messageError = "No se Puede Numeros Negativos";
+        }
+        return result;
+
+    }
 
     public float Nfactorial() {
 
