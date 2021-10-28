@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 import com.aslbank.calculadora.model.Calculator;
 
 public class FXMLControllerCalculator implements Initializable {
-    private float data;
+    private double data;
     private int operation = -1;
     private Calculator calculator = new Calculator();
 
@@ -133,32 +133,32 @@ public class FXMLControllerCalculator implements Initializable {
         //Operations Buttons
         else if (event.getSource() == plus) {
 
-            data = Float.parseFloat(display.getText());
+            data = Double.parseDouble(display.getText());
             operation = 1; //Addition
             display.setText("");
 
         } else if (event.getSource() == minus) {
 
-            data = Float.parseFloat(display.getText());
+            data = Double.parseDouble(display.getText());
             operation = 2; //Substraction
             display.setText("");
 
         } else if (event.getSource() == mult) {
 
-            data = Float.parseFloat(display.getText());
+            data = Double.parseDouble(display.getText());
             operation = 3; //Mul
             display.setText("");
 
         } else if (event.getSource() == div) {
 
-            data = Float.parseFloat(display.getText());
+            data = Double.parseDouble(display.getText());
             operation = 4; //Division
             display.setText("");
 
         } else if (event.getSource() == tenPow) {
 
             operation = 5; //Pow10
-            data = Float.parseFloat(display.getText());
+            data = Double.parseDouble(display.getText());
             this.calculator.setA(data);
             display.setText(String.valueOf(this.calculator.x10()));
 
@@ -166,29 +166,41 @@ public class FXMLControllerCalculator implements Initializable {
         }else if (event.getSource() == sqrt) {
 
             operation = 6;
-            data = Float.parseFloat(display.getText());
+            data = Double.parseDouble(display.getText());
             this.calculator.setA(data);
-            display.setText(String.valueOf(this.calculator.sqrt()));
+            double result = this.calculator.sqrt();
+
+            if(this.calculator.getMessageError() ==""){
+                display.setText(String.valueOf(result));
+            }else{
+                display.setText(this.calculator.getMessageError());
+            }
 
 
 
         }else if (event.getSource() == nFact) {
 
             operation = 7; //nFact
-            data = Float.parseFloat(display.getText());
+            data = Double.parseDouble(display.getText());
             this.calculator.setA(data);
-            display.setText(String.valueOf(this.calculator.Nfactorial()));
+            double result = this.calculator.Nfactorial();
+            if(this.calculator.getMessageError() ==""){
+                display.setText(String.valueOf(result));
+            }else{
+                display.setText(this.calculator.getMessageError());
+            }
+
 
         }else if (event.getSource() == log) {
 
             operation = 8; //log10
-            data = Float.parseFloat(display.getText());
+            data = Double.parseDouble(display.getText());
             this.calculator.setA(data);
             display.setText(String.valueOf(this.calculator.log10()));
 
         }else if (event.getSource() == mod) {
 
-            data = Float.parseFloat(display.getText());
+            data = Double.parseDouble(display.getText());
             operation = 9; //Modulo
             display.setText("");
 
@@ -196,12 +208,12 @@ public class FXMLControllerCalculator implements Initializable {
 
         // Make the operations whit second operand
         else if (event.getSource() == equals) {
-            float secondOperand = Float.parseFloat(display.getText());
+            double secondOperand = Double.parseDouble(display.getText());
             switch (operation) {
                 case 1: //Addition
                     this.calculator.setA(data);
                     this.calculator.setB(secondOperand);
-                    float ans = this.calculator.add();
+                    double ans = this.calculator.add();
                     display.setText(String.valueOf(ans));break;
                 case 2: //Subtraction
                     this.calculator.setA(data);
@@ -235,18 +247,30 @@ public class FXMLControllerCalculator implements Initializable {
 
                     this.calculator.setA(secondOperand);
                     ans= this.calculator.sqrt();
-                    display.setText(String.valueOf(ans));
+                    if(this.calculator.getMessageError() ==""){
+                        display.setText(String.valueOf(ans));
+                    }else{
+                        display.setText(this.calculator.getMessageError());
+                    }
 
                     break;
                 case 7: //nFact
                     this.calculator.setA(secondOperand);
                     ans = this.calculator.Nfactorial();
-                    display.setText(String.valueOf(ans));
+                    if(this.calculator.getMessageError() ==""){
+                        display.setText(String.valueOf(ans));
+                    }else{
+                        display.setText(this.calculator.getMessageError());
+                    }
                     break;
                 case 8: //log10
                     this.calculator.setA(secondOperand);
-                    ans = (float) this.calculator.log10();
-                    display.setText(String.valueOf(ans));
+                    ans = this.calculator.log10();
+                    if(this.calculator.getMessageError() ==""){
+                        display.setText(String.valueOf(ans));
+                    }else{
+                        display.setText(this.calculator.getMessageError());
+                    }
                     break;
 
                 case 9: //mod

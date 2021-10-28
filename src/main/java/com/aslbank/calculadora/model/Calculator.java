@@ -1,13 +1,19 @@
 package com.aslbank.calculadora.model;
 
+import java.text.DecimalFormat;
+
 public class Calculator {
 
-    private float a, b;
+    private double a, b;
     private String messageError;
+    private DecimalFormat df ;
+
 
     public Calculator() {
         this.a=0;
         this.b=0;
+        this.messageError = "";
+        this.df = new DecimalFormat("#.00000");
     }
 
     public String getMessageError() {
@@ -18,38 +24,43 @@ public class Calculator {
         this.messageError = messageError;
     }
 
-    public float getA() {
+    public double getA() {
         return a;
     }
 
-    public void setA(float a) {
+    public void setA(double a) {
         this.a = a;
     }
 
-    public float getB() {
+    public double getB() {
         return b;
     }
 
-    public void setB(float b) {
+    public void setB(double b) {
         this.b = b;
     }
 
-    public float add() {return this.a+this.b;}
 
-    public float substract()
+    public static double formatearDecimales(Double numero, Integer numeroDecimales) {
+        return (Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales));
+    }
+
+    public double add() {return this.a+this.b;}
+
+    public double substract()
     {
         return this.a-this.b;
     }
 
-    public float multiply()
+    public double multiply()
     {
         return this.a*this.b;
     }
 
-    public float div() {
-        float result = 0;
+    public double div() {
+        double result = 0;
         if(this.b != 0){
-            result = this.a/this.b;
+            result = Double.parseDouble(df.format(this.a/this.b));
         }else{
 
             this.messageError = "No se Puede Dividir por Cero";
@@ -57,36 +68,51 @@ public class Calculator {
         return result;
     }
 
-    public float x10() {return this.a*10;}
+    public double x10() {return this.a*10;}
 
-    public float sqrt() {
-        float result = 0;
-        if(this.a != -1){
-            result = (float) Math.sqrt(this.a);
+    public double sqrt() {
+        double result = 0;
+        if(this.a > 0){
+            result = formatearDecimales(Math.sqrt(this.a),5);
         }else{
-            this.messageError = "No se Puede Numeros Negativos";
+            this.messageError = "No se Pueden Numeros Negativos";
         }
         return result;
 
     }
 
-    public float Nfactorial() {
+    public double Nfactorial() {
 
-        long factorial = 1;
-        for(float i=1; i<=this.a; i++){
-
-            factorial *= i;
-
+        double result = 0;
+        double aFloor = Math.floor(this.a);
+        if(aFloor > 0){
+            long factorial = 1;
+            for(double i=1; i<=aFloor; i++){
+                factorial *= i;
+            }
+            result = factorial;
+        }else{
+            this.messageError = "No se Pueden Numeros Negativos";
         }
-        return factorial;
+        return result;
     }
 
-    public float log10() {
-        return (float) Math.log10(this.a);
+    public double log10() {
+
+        double result = 0;
+        if(this.a > 0){
+            result = Double.parseDouble(df.format(Math.log10(this.a)));
+                    //formatearDecimales(Math.log10(this.a),5);
+        }else{
+            this.messageError = "No se Pueden Numeros Negativos";
+        }
+        return result;
     }
 
-    public float mod(){
+    public double mod(){
         return this.a%this.b;
     }
+
+
 
 }
