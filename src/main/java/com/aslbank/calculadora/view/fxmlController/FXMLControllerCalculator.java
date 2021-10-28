@@ -196,7 +196,13 @@ public class FXMLControllerCalculator implements Initializable {
             operation = 8; //log10
             data = Double.parseDouble(display.getText());
             this.calculator.setA(data);
-            display.setText(String.valueOf(this.calculator.log10()));
+            double result = this.calculator.Nfactorial();
+            if(this.calculator.getMessageError() ==""){
+                display.setText(String.valueOf(result));
+            }else{
+                display.setText(this.calculator.getMessageError());
+            }
+
 
         }else if (event.getSource() == mod) {
 
