@@ -432,12 +432,78 @@ public class CalculadoraIT {
         assertEquals(expResult,result,0.0);
     }
 
-    //EXPONENCIAL POW x10 PENDIENTE
-    @Test //3^10
-    public void threePOWTenIs(){
+    @Test // 10 % 5 = 0; #42
+    public void tenModFiveIsZero(){
+        System.out.println("Function Mod");
+        this.calculator.setA(10);
+        this.calculator.setB(5);
+        float expResult = 0;
+        double result = this.calculator.mod();
+        assertEquals(expResult,result,0.0);
+    }
+
+    @Test // 5%0 = FAIL; #43
+    public void fiveModZeroIsFail(){
+        System.out.println("Function Mod");
+        this.calculator.setA(5);
+        this.calculator.setB(0);
+        float expResult = 0;
+        double result = this.calculator.mod();
+        assertEquals(expResult,result,0.0);
+    }
+
+    @Test // 10 % -4 = 2; #46
+    public void tenModMinusFourIsTwo(){
+        System.out.println("Function Mod");
+        this.calculator.setA(10);
+        this.calculator.setB(-4);
+        float expResult = 2;
+        double result = this.calculator.mod();
+        assertEquals(expResult,result,0.0);
+    }
+
+    @Test // -10 % 3 = -1; # 45
+    public void minusTenModThreeIsMinusOne(){
+        System.out.println("Function Mod");
+        this.calculator.setA(-10);
+        this.calculator.setB(3);
+        float expResult = -1;
+        double result = this.calculator.mod();
+        assertEquals(expResult,result,0.0);
+    }
+
+    //EXPONENCIAL POW x10
+    @Test //10^3 = 1000; #46
+    public void powThreeIs1000(){
         System.out.println("Function Pow10");
         this.calculator.setA(3);
         double expResult = 1000;
+        double result = this.calculator.x10();
+        assertEquals(expResult,result,0.0);
+    }
+    @Test //10^-3 = 0.001; #47
+    public void powMinusThreeIs0p001(){
+        System.out.println("Function Pow10");
+        this.calculator.setA(-3);
+        double expResult = 0.001;
+        double result = this.calculator.x10();
+        assertEquals(expResult,result,0.0);
+    }
+
+    @Test //10^0 = 1 ; #48
+    public void powZeroIsOne(){
+        System.out.println("Function Pow10");
+        this.calculator.setA(0);
+        double expResult = 1;
+        double result = this.calculator.x10();
+        assertEquals(expResult,result,0.0);
+    }
+
+    @Test //10^2.2 = 158.48931; #49
+    public void powTwopTwoIs158p48931(){
+        System.out.println("Function Pow10");
+        this.calculator.setA(2.2);
+        double expResult = 158.48931;
         double result = this.calculator.x10();
         assertEquals(expResult,result,0.0);
     }
