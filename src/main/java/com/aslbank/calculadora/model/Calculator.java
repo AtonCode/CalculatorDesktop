@@ -28,9 +28,7 @@ public class Calculator {
         return a;
     }
 
-    public void setA(double a) {
-        this.a = a;
-    }
+    public void setA(double a) {this.a = a;}
 
     public double getB() {
         return b;
@@ -68,7 +66,16 @@ public class Calculator {
         return result;
     }
 
-    public double x10() {return this.a*10;}
+    public double x10() {
+
+        double result = 0;
+        if(this.a > 0){
+            result = formatearDecimales(Math.pow(10,this.a),5);
+        }else{
+            this.messageError = "No se Pueden Numeros Negativos ni Cero";
+        }
+        return result;
+    }
 
     public double sqrt() {
         double result = 0;

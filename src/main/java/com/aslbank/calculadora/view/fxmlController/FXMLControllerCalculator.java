@@ -155,13 +155,23 @@ public class FXMLControllerCalculator implements Initializable {
             operation = 4; //Division
             display.setText("");
 
-        } else if (event.getSource() == tenPow) {
+        }else if (event.getSource() == mod) {
+
+            data = Double.parseDouble(display.getText());
+            operation = 9; //Modulo
+            display.setText("");
+
+        }else if (event.getSource() == tenPow) {
 
             operation = 5; //Pow10
             data = Double.parseDouble(display.getText());
             this.calculator.setA(data);
-            display.setText(String.valueOf(this.calculator.x10()));
-
+            double result = this.calculator.x10();
+            if(this.calculator.getMessageError() ==""){
+                display.setText(String.valueOf(result));
+            }else{
+                display.setText(this.calculator.getMessageError());
+            }
 
         }else if (event.getSource() == sqrt) {
 
@@ -175,8 +185,6 @@ public class FXMLControllerCalculator implements Initializable {
             }else{
                 display.setText(this.calculator.getMessageError());
             }
-
-
 
         }else if (event.getSource() == nFact) {
 
@@ -202,14 +210,6 @@ public class FXMLControllerCalculator implements Initializable {
             }else{
                 display.setText(this.calculator.getMessageError());
             }
-
-
-        }else if (event.getSource() == mod) {
-
-            data = Double.parseDouble(display.getText());
-            operation = 9; //Modulo
-            display.setText("");
-
         }
 
         // Make the operations whit second operand
@@ -220,17 +220,32 @@ public class FXMLControllerCalculator implements Initializable {
                     this.calculator.setA(data);
                     this.calculator.setB(secondOperand);
                     double ans = this.calculator.add();
-                    display.setText(String.valueOf(ans));break;
+                    if(this.calculator.getMessageError() ==""){
+                        display.setText(String.valueOf(ans));
+                    }else{
+                        display.setText(this.calculator.getMessageError());
+                    }
+                    break;
                 case 2: //Subtraction
                     this.calculator.setA(data);
                     this.calculator.setB(secondOperand);
                     ans = this.calculator.substract();
-                    display.setText(String.valueOf(ans));break;
+                    if(this.calculator.getMessageError() ==""){
+                        display.setText(String.valueOf(ans));
+                    }else{
+                        display.setText(this.calculator.getMessageError());
+                    }
+                    break;
                 case 3: //Mul
                     this.calculator.setA(data);
                     this.calculator.setB(secondOperand);
                     ans = this.calculator.multiply();
-                    display.setText(String.valueOf(ans));break;
+                    if(this.calculator.getMessageError() ==""){
+                        display.setText(String.valueOf(ans));
+                    }else{
+                        display.setText(this.calculator.getMessageError());
+                    }
+                    break;
                 case 4: //Div
                     ans = 0f;
                     this.calculator.setA(data);
@@ -247,7 +262,11 @@ public class FXMLControllerCalculator implements Initializable {
 
                     this.calculator.setA(secondOperand);
                     ans = this.calculator.x10();
-                    display.setText(String.valueOf(ans));
+                    if(this.calculator.getMessageError() ==""){
+                        display.setText(String.valueOf(ans));
+                    }else{
+                        display.setText(this.calculator.getMessageError());
+                    }
                     break;
                 case 6: //sqtr
 
@@ -283,7 +302,12 @@ public class FXMLControllerCalculator implements Initializable {
                     this.calculator.setA(data);
                     this.calculator.setB(secondOperand);
                     ans = this.calculator.mod();
-                    display.setText(String.valueOf(ans));break;
+                    if(this.calculator.getMessageError() ==""){
+                        display.setText(String.valueOf(ans));
+                    }else{
+                        display.setText(this.calculator.getMessageError());
+                    }
+                    break;
             }
         }
 
