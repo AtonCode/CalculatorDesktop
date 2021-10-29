@@ -247,7 +247,6 @@ public class FXMLControllerCalculator implements Initializable {
                     }
                     break;
                 case 4: //Div
-                    ans = 0f;
                     this.calculator.setA(data);
                     this.calculator.setB(secondOperand);
                     ans = this.calculator.div();

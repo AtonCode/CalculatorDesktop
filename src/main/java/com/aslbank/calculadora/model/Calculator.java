@@ -13,7 +13,7 @@ public class Calculator {
         this.a=0;
         this.b=0;
         this.messageError = "";
-        this.df = new DecimalFormat("#.00000");
+        
     }
 
     public String getMessageError() {
@@ -58,7 +58,7 @@ public class Calculator {
     public double div() {
         double result = 0;
         if(this.b != 0){
-            result = Double.parseDouble(df.format(this.a/this.b));
+            result = formatearDecimales(this.a/this.b,5);
         }else{
 
             this.messageError = "No se Puede Dividir por Cero";
@@ -108,8 +108,7 @@ public class Calculator {
 
         double result = 0;
         if(this.a > 0){
-            result = Double.parseDouble(df.format(Math.log10(this.a)));
-                    //formatearDecimales(Math.log10(this.a),5);
+            result = formatearDecimales(Math.log10(this.a),5);
         }else{
             this.messageError = "No se Pueden Numeros Negativos";
         }
