@@ -11,8 +11,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("FXMLDocument.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        String FXMLMini="miniCalculator.fxml";
+        String FXMLDocument="FXMLDocument.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(FXMLDocument));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Calculator");
         stage.setScene(scene);
         stage.show();
