@@ -13,7 +13,7 @@ public class Calculator {
         this.a=0;
         this.b=0;
         this.messageError = "";
-        
+
     }
 
     public String getMessageError() {
