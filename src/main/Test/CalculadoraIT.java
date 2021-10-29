@@ -437,7 +437,7 @@ public class CalculadoraIT {
     public void threePOWTenIs(){
         System.out.println("Function Pow10");
         this.calculator.setA(3);
-        double expResult = 30;
+        double expResult = 1000;
         double result = this.calculator.x10();
         assertEquals(expResult,result,0.0);
     }
