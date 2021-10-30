@@ -68,12 +68,8 @@ public class Calculator {
 
     public double x10() {
 
-        double result = 0;
-        if(this.a > 0){
-            result = formatearDecimales(Math.pow(10,this.a),5);
-        }else{
-            this.messageError = "No se Pueden Numeros Negativos ni Cero";
-        }
+        double result = formatearDecimales(Math.pow(10,this.a),5);
+
         return result;
     }
 
@@ -116,7 +112,13 @@ public class Calculator {
     }
 
     public double mod(){
-        return this.a%this.b;
+        double result = 0;
+        if(this.a != 0){
+            result = formatearDecimales(this.a%this.b,5);
+        }else{
+            this.messageError = "No se Pueden Numeros Negativos";
+        }
+        return result;
     }
 
 
