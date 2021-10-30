@@ -122,49 +122,50 @@ public class FXMLControllerCalculator implements Initializable {
             this.calculator.setA(0);
             this.calculator.setMessageError("");
         }else if (event.getSource() == coma) {
-            display.setText(display.getText() + ".");
+            display.setText(display.getText() + ",");
 
         }else if (event.getSource() == signo) {
             display.setText("-" + display.getText());
         }else if (event.getSource() == back) {
-            display.setText(display.getText()+" ");
+            this.calculator.setBeforeStr(display.getText());
+            display.setText(this.calculator.back());
         }
 
         //Operations Buttons
         else if (event.getSource() == plus) {
 
-            data = Double.parseDouble(display.getText());
+            data = Double.parseDouble(display.getText().replaceAll(",","."));
             operation = 1; //Addition
             display.setText("");
 
         } else if (event.getSource() == minus) {
 
-            data = Double.parseDouble(display.getText());
+            data = Double.parseDouble(display.getText().replaceAll(",","."));
             operation = 2; //Substraction
             display.setText("");
 
         } else if (event.getSource() == mult) {
 
-            data = Double.parseDouble(display.getText());
+            data = Double.parseDouble(display.getText().replaceAll(",","."));
             operation = 3; //Mul
             display.setText("");
 
         } else if (event.getSource() == div) {
 
-            data = Double.parseDouble(display.getText());
+            data = Double.parseDouble(display.getText().replaceAll(",","."));
             operation = 4; //Division
             display.setText("");
 
         }else if (event.getSource() == mod) {
 
-            data = Double.parseDouble(display.getText());
+            data = Double.parseDouble(display.getText().replaceAll(",","."));
             operation = 9; //Modulo
             display.setText("");
 
         }else if (event.getSource() == tenPow) {
 
             operation = 5; //Pow10
-            data = Double.parseDouble(display.getText());
+            data = Double.parseDouble(display.getText().replaceAll(",","."));
             this.calculator.setA(data);
             double result = this.calculator.x10();
             if(this.calculator.getMessageError() ==""){
@@ -176,7 +177,7 @@ public class FXMLControllerCalculator implements Initializable {
         }else if (event.getSource() == sqrt) {
 
             operation = 6;
-            data = Double.parseDouble(display.getText());
+            data = Double.parseDouble(display.getText().replaceAll(",","."));
             this.calculator.setA(data);
             double result = this.calculator.sqrt();
 
@@ -189,7 +190,7 @@ public class FXMLControllerCalculator implements Initializable {
         }else if (event.getSource() == nFact) {
 
             operation = 7; //nFact
-            data = Double.parseDouble(display.getText());
+            data = Double.parseDouble(display.getText().replaceAll(",","."));
             this.calculator.setA(data);
             double result = this.calculator.Nfactorial();
             if(this.calculator.getMessageError() ==""){
@@ -202,7 +203,7 @@ public class FXMLControllerCalculator implements Initializable {
         }else if (event.getSource() == log) {
 
             operation = 8; //log10
-            data = Double.parseDouble(display.getText());
+            data = Double.parseDouble(display.getText().replaceAll(",","."));
             this.calculator.setA(data);
             double result = this.calculator.Nfactorial();
             if(this.calculator.getMessageError() ==""){
@@ -214,7 +215,7 @@ public class FXMLControllerCalculator implements Initializable {
 
         // Make the operations whit second operand
         else if (event.getSource() == equals) {
-            double secondOperand = Double.parseDouble(display.getText());
+            double secondOperand = Double.parseDouble(display.getText().replaceAll(",","."));
             switch (operation) {
                 case 1: //Addition
                     this.calculator.setA(data);

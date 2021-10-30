@@ -5,15 +5,22 @@ import java.text.DecimalFormat;
 public class Calculator {
 
     private double a, b;
-    private String messageError;
-    private DecimalFormat df ;
+    private String messageError, beforeStr;
 
 
     public Calculator() {
         this.a=0;
         this.b=0;
         this.messageError = "";
+        this.beforeStr = " ";
+    }
 
+    public String getBeforeStr() {
+        return beforeStr;
+    }
+
+    public void setBeforeStr(String beforeStr) {
+        this.beforeStr = beforeStr;
     }
 
     public String getMessageError() {
@@ -119,6 +126,13 @@ public class Calculator {
             this.messageError = "No se Pueden Numeros Negativos";
         }
         return result;
+    }
+
+    public String back(){
+
+        String afterStr = this.beforeStr.substring(0,this.beforeStr.length()-1);
+
+        return afterStr;
     }
 
 

@@ -518,6 +518,16 @@ public class CalculadoraIT {
         assertEquals(expResult,result,0.0);
     }
 
+    @Test // ATON = ATO #51
+    public  void backATONisATO(){
+        System.out.println("Function Back => back ATON is ATO");
+        this.calculator.setBeforeStr("ATON");
+        String expResult = "ATO";
+        String result = this.calculator.back();
+        assertEquals(expResult,result);
+
+    }
+
 
 
 
