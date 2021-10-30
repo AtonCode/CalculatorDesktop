@@ -13,7 +13,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         String FXMLMini="miniCalculator.fxml";
         String FXMLDocument="FXMLDocument.fxml";
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(FXMLDocument));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(FXMLMini));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Calculator");
         stage.setScene(scene);
