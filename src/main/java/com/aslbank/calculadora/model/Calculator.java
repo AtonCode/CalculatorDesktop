@@ -5,14 +5,23 @@ import java.text.DecimalFormat;
 public class Calculator {
 
     private double a, b;
+    private boolean flagSign;
     private String messageError, beforeStr;
-
 
     public Calculator() {
         this.a=0;
         this.b=0;
+        this.flagSign = false;
         this.messageError = "";
         this.beforeStr = " ";
+    }
+
+    public boolean isFlagSign() {
+        return flagSign;
+    }
+
+    public void setFlagSign(boolean flagSign) {
+        this.flagSign = flagSign;
     }
 
     public String getBeforeStr() {
@@ -131,6 +140,18 @@ public class Calculator {
     public String back(){
 
         String afterStr = this.beforeStr.substring(0,this.beforeStr.length()-1);
+
+        return afterStr;
+    }
+
+    public String signoPolaridadPosisitiva(){
+
+        String afterStr = this.beforeStr.replace("-","+");
+        return afterStr;
+    }
+    public String signoPolaridadNegativa(){
+
+        String afterStr = this.beforeStr.replace("+","-");
 
         return afterStr;
     }

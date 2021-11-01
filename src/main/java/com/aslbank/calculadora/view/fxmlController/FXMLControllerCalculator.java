@@ -121,11 +121,21 @@ public class FXMLControllerCalculator implements Initializable {
             this.calculator.setB(0);
             this.calculator.setA(0);
             this.calculator.setMessageError("");
+            this.calculator.setFlagSign(false);
         }else if (event.getSource() == coma) {
             display.setText(display.getText() + ",");
 
-        }else if (event.getSource() == signo) {
-            display.setText("-" + display.getText());
+        }else if (event.getSource() == signo && this.calculator.isFlagSign() == false) {
+
+            display.setText("-"+display.getText().replace("+",""));
+            this.calculator.setFlagSign(true);
+
+        }else if (event.getSource() == signo && this.calculator.isFlagSign() == true) {
+
+            this.calculator.setBeforeStr(display.getText());
+            display.setText(this.calculator.signoPolaridadPosisitiva());
+            this.calculator.setFlagSign(false);
+
         }else if (event.getSource() == back) {
             this.calculator.setBeforeStr(display.getText());
             display.setText(this.calculator.back());
